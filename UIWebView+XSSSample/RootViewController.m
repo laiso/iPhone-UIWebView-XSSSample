@@ -27,7 +27,7 @@
   NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"index.html"] 
                                                   encoding:NSUTF8StringEncoding 
                                                      error:nil] autorelease];
-  [_webView loadHTMLString:@"<html></html>" baseURL:nil];
+  [_webView loadHTMLString:src baseURL:nil];
   
   [self.view addSubview:_webView];
   
@@ -44,8 +44,9 @@
   NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"src.js"] 
                                                            encoding:NSUTF8StringEncoding 
                                                            error:nil] autorelease];
-  NSString* ret = [_webView stringByEvaluatingJavaScriptFromString:src];
-  NSLog(@"Ret: %@", ret);
+  //NSString* ret = [_webView stringByEvaluatingJavaScriptFromString:src];
+  [_webView loadHTMLString:[NSString stringWithFormat:@"<script>%@</script>", src] baseURL:nil];
+  //NSLog(@"Ret: %@", ret);
 }
 
 # pragma mark - UIWebViewDelegate
