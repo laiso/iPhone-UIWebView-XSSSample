@@ -20,14 +20,21 @@
   _webView = [[[UIWebView alloc] initWithFrame:self.view.frame] autorelease];
   _webView.delegate = self;
   
-  //NSURL* URL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"index.html"]; // XSS
-  //NSURL* URL = [NSURL URLWithString:@"http://twitter.com/"]; // NONE
-  //[_webView loadRequest:[NSURLRequest requestWithURL:URL]];
-  
+  // リソースパスのURLからリクエストをロードするパターン
+//  NSURL* URL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"index.html"]; // XSS
+//  //NSURL* URL = [NSURL URLWithString:@"http://twitter.com/"]; // NONE
+//  [_webView loadRequest:[NSURLRequest requestWithURL:URL]];
+//  
+
+  // リソースパスのファイルをHTML文字列としてロードするパターン
   NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"index.html"] 
                                                   encoding:NSUTF8StringEncoding 
                                                      error:nil] autorelease];
-  [_webView loadHTMLString:src baseURL:nil];
+  [_webView loadHTMLString:src baseURL:[NSURL URLWithString:@"http://localhost/"]];
+  //[_webView loadHTMLString:src baseURL:[NSURL URLWithString:@"file:"]];
+  //[_webView loadHTMLString:src baseURL:nil];
+  
+  NSLog(@"loadView: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
   
   [self.view addSubview:_webView];
   
@@ -40,13 +47,13 @@
 
 -(void)buttonAction:(id)sender
 {
-  NSLog(@"%@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
+  NSLog(@"buttonAction: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
+  /*
   NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"src.js"] 
                                                            encoding:NSUTF8StringEncoding 
                                                            error:nil] autorelease];
-  //NSString* ret = [_webView stringByEvaluatingJavaScriptFromString:src];
   [_webView loadHTMLString:[NSString stringWithFormat:@"<script>%@</script>", src] baseURL:nil];
-  //NSLog(@"Ret: %@", ret);
+  */
 }
 
 # pragma mark - UIWebViewDelegate
@@ -58,7 +65,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-  ;
+  NSLog(@"webViewDidFinishLoad: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

