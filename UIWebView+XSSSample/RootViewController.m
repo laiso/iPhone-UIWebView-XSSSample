@@ -17,7 +17,7 @@
 - (void)loadView
 {
   self.view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-  _webView = [[[UIWebView alloc] initWithFrame:self.view.frame] autorelease];
+  _webView = [[UIWebView alloc] initWithFrame:self.view.frame];
   _webView.delegate = self;
   
   // リソースパスのURLからリクエストをロードするパターン
@@ -30,8 +30,9 @@
   NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"index.html"] 
                                                   encoding:NSUTF8StringEncoding 
                                                      error:nil] autorelease];
-  [_webView loadHTMLString:src baseURL:[NSURL URLWithString:@"http://localhost/"]];
-  //[_webView loadHTMLString:src baseURL:[NSURL URLWithString:@"file:"]];
+  //[_webView loadHTMLString:src baseURL:[NSURL URLWithString:@"http://localhost/"]];
+  NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
+  [_webView loadHTMLString:src baseURL:[NSURL fileURLWithPath:bundlePath]];
   //[_webView loadHTMLString:src baseURL:nil];
   
   NSLog(@"loadView: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
@@ -47,13 +48,8 @@
 
 -(void)buttonAction:(id)sender
 {
+  NSLog(@"URL: %@", [_webView.request URL]);
   NSLog(@"buttonAction: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
-  /*
-  NSString* src = [[[NSString alloc] initWithContentsOfURL:[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"src.js"] 
-                                                           encoding:NSUTF8StringEncoding 
-                                                           error:nil] autorelease];
-  [_webView loadHTMLString:[NSString stringWithFormat:@"<script>%@</script>", src] baseURL:nil];
-  */
 }
 
 # pragma mark - UIWebViewDelegate
@@ -65,12 +61,16 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+  NSLog(@"URL: %@", [_webView.request URL]);
   NSLog(@"webViewDidFinishLoad: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+{  
   NSLog(@"ERROR: %@", [error localizedDescription]);
+  
+  NSLog(@"URL: %@", [_webView.request URL]);
+  NSLog(@"webViewDidFinishLoad: %@", [_webView stringByEvaluatingJavaScriptFromString:@"location.href"]);
 }
 
 
