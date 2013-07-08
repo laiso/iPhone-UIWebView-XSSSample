@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071624F5178A772E00FADCD3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071624F3178A772E00FADCD3 /* AddressBook.framework */; };
+		071624F6178A772E00FADCD3 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071624F4178A772E00FADCD3 /* AddressBookUI.framework */; };
 		07D809041429782C00B4A4E4 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D809031429782C00B4A4E4 /* test.png */; };
 		07DB51D9142903D20037AFFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DB51D8142903D20037AFFC /* UIKit.framework */; };
 		07DB51DB142903D20037AFFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DB51DA142903D20037AFFC /* Foundation.framework */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		071624F3178A772E00FADCD3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		071624F4178A772E00FADCD3 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		07D809031429782C00B4A4E4 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		07DB51D4142903D20037AFFC /* UIWebView+XSSSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIWebView+XSSSample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DB51D8142903D20037AFFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -42,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071624F5178A772E00FADCD3 /* AddressBook.framework in Frameworks */,
+				071624F6178A772E00FADCD3 /* AddressBookUI.framework in Frameworks */,
 				07DB51D9142903D20037AFFC /* UIKit.framework in Frameworks */,
 				07DB51DB142903D20037AFFC /* Foundation.framework in Frameworks */,
 				07DB51DD142903D20037AFFC /* CoreGraphics.framework in Frameworks */,
@@ -71,6 +77,8 @@
 		07DB51D7142903D20037AFFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				071624F3178A772E00FADCD3 /* AddressBook.framework */,
+				071624F4178A772E00FADCD3 /* AddressBookUI.framework */,
 				07DB51D8142903D20037AFFC /* UIKit.framework */,
 				07DB51DA142903D20037AFFC /* Foundation.framework */,
 				07DB51DC142903D20037AFFC /* CoreGraphics.framework */,
@@ -234,6 +242,7 @@
 		07DB51ED142903D20037AFFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebView+XSSSample/UIWebView+XSSSample-Prefix.pch";
 				INFOPLIST_FILE = "UIWebView+XSSSample/UIWebView+XSSSample-Info.plist";

